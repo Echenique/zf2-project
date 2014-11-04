@@ -31,3 +31,11 @@
       </tr>
     <?php endforeach;?>
 </table>
+<?php 
+    
+    echo $this->paginationControl(
+            $posts,
+            'Sliding',
+            'partial/paginator/control.phtml');
+
+?>

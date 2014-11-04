@@ -38,16 +38,16 @@ class PostTest extends ModelTestCase
      */
     public function testInputFilterInvalido()
     {
-        //testa se os filtros estÃ£o funcionando
+        //testa se os filtros estão funcionando
         $post = new Post();
-        //title sÃ³ pode ter 100 caracteres
+        //title só pode ter 100 caracteres
         $post->title = 'Lorem Ipsum Ã© simplesmente uma simulaÃ§Ã£o de texto da indÃºstria 
         tipogrÃ¡fica e de impressos. Lorem Ipsum Ã© simplesmente uma simulaÃ§Ã£o de texto 
         da indÃºstria tipogrÃ¡fica e de impressos';
     }        
 
     /**
-     * Teste de inserÃ§Ã£o de um post vÃ¡lido
+     * Teste de inserção de um post válido
      */
     public function testInsert()
     {
@@ -63,7 +63,7 @@ class PostTest extends ModelTestCase
 
     /**
      * @expectedException Core\Model\EntityException
-     * @expectedExceptionMessage Input invalido: description = 
+     * @expectedExceptionMessage Input inválido: description = 
      */
     public function testInsertInvalido()
     {

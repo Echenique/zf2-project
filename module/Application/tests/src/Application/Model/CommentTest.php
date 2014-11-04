@@ -38,17 +38,17 @@ class CommentTest extends ModelTestCase
     
     /**
      * @expectedException Core\Model\EntityException
-     * @expectedExceptionMessage Input invÃ¡lido: email = 
+     * @expectedExceptionMessage Input inválido: email = 
      */
     public function testInputFilterInvalido()
     {
         $comment = new Comment();
-        //email deve ser um e-mail vÃ¡lido
+        //email deve ser um e-mail válido
         $comment->email = 'email_invalido';
     }
 
     /**
-     * Teste de inserÃ§Ã£o de um comment vÃ¡lido
+     * Teste de inserção de um comment válido
      */
     public function testInsert()
     {
@@ -57,7 +57,7 @@ class CommentTest extends ModelTestCase
         $saved = $this->getTable('Application\Model\Comment')->save($comment);
 
         $this->assertEquals(
-            'ComentÃ¡rio importante alert("ok");', $saved->description
+            'Comentário importante alert("ok");', $saved->description
         );
         $this->assertEquals(1, $saved->id);
     }
@@ -147,7 +147,7 @@ class CommentTest extends ModelTestCase
         $post = $this->addPost();
         $comment = new Comment();
         $comment->post_id = $post->id;
-        $comment->description = 'ComentÃ¡rio importante <script>alert("ok");</script> <br> ';
+        $comment->description = 'Comentário importante <script>alert("ok");</script> <br> ';
         $comment->name = 'Elton Minetto';
         $comment->email = 'eminetto@coderockr.com';
         $comment->webpage = 'http://www.eltonminetto.net';
