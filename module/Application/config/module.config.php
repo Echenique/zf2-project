@@ -21,6 +21,17 @@ return array(
                     ),
                 ),
             ),
+            'teste' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/teste',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'teste',
+                        'module'     => 'application',
+                    ),
+                ),
+            ),
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -57,16 +68,17 @@ return array(
     ),
     'service_manager' => array(
         'factories' => array(
-            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+//            'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',  // esse não funciona no form, o de baixo sim :D
+            'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
         ),
     ),
     'translator' => array(
-        'locale' => 'en_US',
+        'locale' => 'pt_BR',
         'translation_file_patterns' => array(
             array(
-                'type'     => 'gettext',
+                'type'     => 'phparray',
                 'base_dir' => __DIR__ . '/../language',
-                'pattern'  => '%s.mo',
+                'pattern'  => '%s.php',
             ),
         ),
     ),

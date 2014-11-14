@@ -48,4 +48,8 @@ class IndexController extends ActionController {
         ));
     }
 
+    public function testeAction() {
+        
+    }
+    
 }

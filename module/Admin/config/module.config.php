@@ -5,6 +5,7 @@ return array(
     'controllers' => array( //add module controllers
         'invokables' => array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
+            'Admin\Controller\Auth' => 'Admin\Controller\AuthController',
         ),
     ),
 
@@ -47,7 +48,7 @@ return array(
     ),
     //the module can have a specific layout
     'module_layout' => array(
-        'Admin' => 'layout/layout.phtml'
+        'admin' => 'layout/layout.phtml'
     ),
     'view_manager' => array( 
         'template_path_stack' => array(
@@ -64,14 +65,30 @@ return array(
                 $dbAdapter = $sm->get('DbAdapter');
                 return new Admin\Service\Auth($dbAdapter);
             },
+            'Cache' => function($sm) {
+//            $config = include __DIR__ . '/../../../config/application.config.php';
+            $config = $sm->get('Config');
+            $cache = \Zend\Cache\StorageFactory::factory(
+                array(
+                    'adapter' => $config['cache']['adapter'],
+                    'ttl' => $config['cache']['ttl'],
+                    'plugins' => array(
+                        'exception_handler' => array('throw_exceptions' => false),
+                        'Serializer'
+                    ),
+                )
+            );
+ 
+            return $cache;
+        }
         )    
     ),
     
-    'db' => array( //module can have a specific db configuration
-        'driver' => 'PDO_SQLite',
-        'dsn' => 'sqlite:' . __DIR__ .'/../data/skel.db',
-        'driver_options' => array(
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        )
-    )
+//    'db' => array( //module can have a specific db configuration
+//        'driver' => 'PDO_SQLite',
+//        'dsn' => 'sqlite:' . __DIR__ .'/../data/skel.db',
+//        'driver_options' => array(
+//            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+//        )
+//    )
 );
